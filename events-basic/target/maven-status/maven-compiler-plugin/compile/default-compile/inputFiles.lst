@@ -1,0 +1,9 @@
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\api\CreateOrderRequest.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\api\OrderController.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\config\KafkaConsumerConfig.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\config\KafkaProducerConfig.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\config\KafkaTopicsConfig.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\domain\OrderCreatedEvent.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\EventsApplication.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\messaging\OrderEventConsumer.java
+C:\Workspaces\angel\github\Ejercicios-Practicos-Java-2025\Ejercicios-Eventos\events-basic\src\main\java\com\example\events\messaging\OrderEventProducer.java

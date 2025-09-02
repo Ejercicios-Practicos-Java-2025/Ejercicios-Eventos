@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  kafka:
+    image: bitnami/kafka:3.7
+    container_name: kafka
+    restart: unless-stopped
+    ports:
+      - "29092:29092"   # para clientes en el host
+      - "9092:9092"     # opcional, para otros contenedores
+    environment:
+      # --- Requeridos por Bitnami en KRaft ---
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+
+      # --- Listeners (interno y externo) ---
+      #- KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,PLAINTEXT_HOST://:29092
+      - KAFKA_CFG_LISTENERS=EXTERNAL://:29092,CONTROLLER://:9093,INTERNAL://:9092
+
+      #- KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=EXTERNAL://localhost:29092,INTERNAL://kafka:9092
+      
+      #- KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      #- KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=EXTERNAL
+
+      # --- Mapa de protocolos (¡clave!) ---
+      #- KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=EXTERNAL:PLAINTEXT,INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+
+      # --- Permitir sin TLS/SASL (¡clave!) ---
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+      # --- Configs útiles single-node ---
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=1
+
+    volumes:
+      - kafka_data:/bitnami/kafka
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    ports:
+      - "8080:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      # MUY IMPORTANTE: usar el nombre del servicio y el puerto interno del broker
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+
+volumes:
+  kafka_data:
