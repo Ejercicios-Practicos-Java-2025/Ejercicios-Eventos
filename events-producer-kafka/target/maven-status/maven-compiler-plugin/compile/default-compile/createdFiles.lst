@@ -1,0 +1,7 @@
+com\example\producer\api\CreateOrderRequest.class
+com\example\producer\domain\OrderCreatedEvent.class
+com\example\producer\ProducerApplication.class
+com\example\producer\config\KafkaProducerConfig.class
+com\example\producer\messaging\OrderEventProducer.class
+com\example\producer\config\KafkaTopicsConfig.class
+com\example\producer\api\OrderController.class

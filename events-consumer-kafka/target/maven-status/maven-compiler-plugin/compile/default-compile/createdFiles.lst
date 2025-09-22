@@ -1,0 +1,5 @@
+com\example\consumer\domain\OrderCreatedEvent.class
+com\example\consumer\messaging\OrderEventConsumer.class
+com\example\consumer\config\KafkaConsumerConfig.class
+com\example\consumer\ConsumerApplication.class
+com\example\consumer\config\KafkaTopicsConfig.class

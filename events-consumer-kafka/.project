@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>events</name>
+	<name>events-consumer-kafka</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -27,7 +27,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1758532388958</id>
+			<id>1758532388972</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
