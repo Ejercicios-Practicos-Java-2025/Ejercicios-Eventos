@@ -1,0 +1,23 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: stream-consumer
+  cloud:
+    function:
+      definition: orders
+    stream:
+      bindings:
+        orders-in-0:
+          destination: orders.topic
+          group: orders-consumer-group
+          contentType: application/json
+      kafka:
+        binder:
+          brokers: ${KAFKA_BROKERS:localhost:29092}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

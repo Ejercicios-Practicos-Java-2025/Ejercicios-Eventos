@@ -1,0 +1,27 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: stream-producer
+  cloud:
+    function:
+      definition:  # we will send via StreamBridge, so no Supplier binding is required
+    stream:
+      bindings:
+        orders-out-0:
+          destination: orders.topic
+          contentType: application/json
+      kafka:
+        binder:
+          brokers: ${KAFKA_BROKERS:localhost:29092}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# StreamBridge binding logical name
+app:
+  bindings:
+    orders-out: orders-out-0

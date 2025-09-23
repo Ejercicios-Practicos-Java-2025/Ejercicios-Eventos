@@ -1,0 +1,1 @@
+Build with Maven 3.9+ and JDK 17+: `mvn clean package`
